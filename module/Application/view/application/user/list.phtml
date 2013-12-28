@@ -1,0 +1,72 @@
+<a href="<?=$this->url('users/add')?>" class='btn btn-primary'>
+    <?=$this->translate('__add_user')?>
+</a>
+
+<br/>
+<br/>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                <?=$this->translate('__user_id')?>
+            </th>
+            <th>
+                <?=$this->translate('__user_firstname')?>
+            </th>
+            <th>
+                <?=$this->translate('__user_lastname')?>
+            </th>
+            <th>
+                <?=$this->translate('__user_email')?>
+            </th>
+            <th>
+                <?=$this->translate('__user_address')?>
+            </th>
+            <th>
+                <?=$this->translate('__user_date_of_birth')?>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+    /* @var $user \Application\Entity\User */
+    foreach($this->users as $user)
+    {
+        ?>
+        <tr>
+        <td>
+            <?=$user['id']?>
+        </td>
+        <td>
+            <?=$user['profile']['firstname']?>
+        </td>
+        <td>
+            <?=$user['profile']['lastname']?>
+        </td>
+        <td>
+            <a href='mailto:<?=$user['email']?>'>
+                <?=$user['email']?>
+            </a>
+        </td>
+        <td>
+            <?=$user['profile']['address']?>
+        </td>
+        <td>
+            <?=$user['profile']['dateOfBirth']?>
+        </td>
+        <td>
+            <a href="<?=$this->url('users/edit', array('user_id'   =>  $user['id']))?>" class="btn btn-success">
+                <?=$this->translate('__edit_user')?>
+            </a>
+           <a href="<?=$this->url('users/remove', array('user_id'   =>  $user['id']))?>" class="btn btn-danger">
+            <?=$this->translate('__remove_user')?>
+           </a>
+        </td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
